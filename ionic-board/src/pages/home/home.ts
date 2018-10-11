@@ -17,5 +17,11 @@ export class HomePage {
     createdDate: '10分前'
   };
 
+  posts: { userName: string, message: string, createdDate: any }[] =
+      [
+        { userName: 'ポプ子', message: 'えいえい、おこった？', createdDate: '10分前' },
+        { userName: 'ピピ美', message: 'おこってないよ', createdDate: '5分前' }
+      ];
+
   constructor(public navCtrl: NavController) {}
 }
