@@ -14,6 +14,7 @@ import { HomePage } from '../pages/home/home';
   ],
   imports: [
     BrowserModule,
+    // ルートコンポーネントの指定
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
