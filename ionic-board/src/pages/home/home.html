@@ -16,6 +16,7 @@
       <button type="submit" [disabled]="!f.form.valid" block class="submit" ion-button>投稿</button>
     </ion-list>
 
+    <!-- index は *ngFor の特殊変数 -->
     <ion-card class="singlePost" *ngFor="let p of posts; let i = index">
       <ion-item>
         <h2 padding-vertical>{{p.userName}}</h2>
