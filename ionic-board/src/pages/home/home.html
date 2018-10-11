@@ -16,7 +16,7 @@
       <button type="submit" [disabled]="!f.form.valid" block class="submit" ion-button>投稿</button>
     </ion-list>
 
-    <ion-card class="singlePost" *ngFor="let p of posts">
+    <ion-card class="singlePost" *ngFor="let p of posts; let i = index">
       <ion-item>
         <h2 padding-vertical>{{p.userName}}</h2>
       </ion-item>
@@ -32,7 +32,7 @@
           </ion-col>
 
           <ion-col>
-            <button ion-button icon-start clear small>
+            <button (click)="presentPrompt(i)" ion-button icon-start clear small>
               <ion-icon name="create"></ion-icon>
               <div>編集</div>
             </button>
