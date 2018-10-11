@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -15,7 +15,8 @@ export class HomePage {
         { userName: 'ピピ美', message: 'おこってないよ', createdDate: '5分前' }
       ];
 
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController,
+              public alertCtrl: AlertController) {}
 
   addPost() {
     this.posts.push({
@@ -24,5 +25,28 @@ export class HomePage {
       createdDate: '数秒前'
     });
     this.message = '';
+  }
+
+  presentPrompt(index: number) {
+    console.log('Index: ' + index);
+    const alert = this.alertCtrl.create({
+      title: 'メッセージ編集',
+      inputs: [ { name: 'message', placeholder: 'メッセージ', value: this.posts[index].message } ],
+      buttons: [
+        {
+          text: 'キャンセル',
+          role: 'cancel',
+          handler: () => console.log('キャンセルが選択されました')
+        },
+        {
+          text: '更新',
+          handler: data => {
+            console.log(data);
+            this.posts[index].message = data.message;
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }
