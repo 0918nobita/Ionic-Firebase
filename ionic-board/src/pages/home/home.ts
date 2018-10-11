@@ -7,6 +7,8 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
+  message: string;
+
   posts: { userName: string, message: string, createdDate: any }[] =
       [
         { userName: 'ポプ子', message: 'えいえい、おこった？', createdDate: '10分前' },
@@ -14,4 +16,13 @@ export class HomePage {
       ];
 
   constructor(public navCtrl: NavController) {}
+
+  addPost() {
+    this.posts.push({
+      userName: 'Kodai Matsumoto',
+      message: this.message,
+      createdDate: '数秒前'
+    });
+    this.message = '';
+  }
 }
