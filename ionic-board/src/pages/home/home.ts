@@ -49,4 +49,8 @@ export class HomePage {
     });
     alert.present();
   }
+
+  delete(index: number) {
+    this.posts.splice(index, 1);
+  }
 }
