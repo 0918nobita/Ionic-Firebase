@@ -1,14 +1,55 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Ionic Board
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <form name="form">
+    <ion-list class="inputBlock">
+      <ion-item padding>
+        <ion-label floating>メッセージ</ion-label>
+        <ion-input type="text" name="message"></ion-input>
+      </ion-item>
+      <button type="submit" block class="submit" ion-button>投稿</button>
+    </ion-list>
+
+    <ion-card class="singlePost">
+      <ion-item>
+        <h2 padding-vertical>Kodai Matsumoto</h2>
+      </ion-item>
+
+      <ion-card-content>
+        <div>ここに入力されたメッセージが入ります</div>
+        <ion-row>
+          <ion-col>
+            <button ion-button icon-start clear small>
+              <ion-icon name="text"></ion-icon>
+              <div>コメント</div>
+            </button>
+          </ion-col>
+
+          <ion-col>
+            <button ion-button icon-start clear small>
+              <ion-icon name="create"></ion-icon>
+              <div>編集</div>
+            </button>
+          </ion-col>
+
+          <ion-col>
+            <button ion-button icon-start clear small>
+              <ion-icon name="trash"></ion-icon>
+              <div>削除</div>
+            </button>
+          </ion-col>
+
+          <ion-col class="postedTime">
+            <ion-note>2分前</ion-note>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </form>
 </ion-content>
