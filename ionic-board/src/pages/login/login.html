@@ -1,18 +1,33 @@
-<!--
-  Generated template for the LoginPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>login</ion-title>
+    <ion-title>Login</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
+  <ion-item padding-top text-center no-lines>
+    <h1>メッセージボード</h1>
+    <p>ログインしてメッセージを投稿しよう！</p>
+  </ion-item>
+  <form #f="ngForm">
+    <ion-grid class="formGrid">
+      <ion-row class="inputRow">
+        <ion-icon padding-top padding-left name="mail"></ion-icon>
+        <ion-input required email [(ngModel)]="login.email" type="email" name="login.email" placeholder="メールアドレス"></ion-input>
+      </ion-row>
 
+      <ion-row class="inputRow">
+        <ion-icon padding-top padding-left name="key"></ion-icon>
+        <ion-input required [(ngModel)]="login.password" type="password" name="login.password" placeholder="パスワード"></ion-input>
+      </ion-row>
+
+      <ion-row>
+        <button [disabled]="!f.form.valid" (click)="userLogin()" type="button" ion-button block round>ログイン</button>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+  <button ion-button block clear (click)="gotoSignup()">
+    アカウント登録はこちらから！
+  </button>
 </ion-content>
