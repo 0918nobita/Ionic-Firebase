@@ -1,14 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
+import { AngularFireAuth } from '@angular/fire/auth';
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { HomePage } from '../home/home';
 
-@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -22,9 +17,27 @@ export class LoginPage {
     password: ''
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(
+      public navCtrl: NavController,
+      private toastCtrl: ToastController,
+      private afAuth: AngularFireAuth) {}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+  async userLogin() {
+    try {
+      const user = await this.afAuth.auth.signInWithEmailAndPassword(
+          this.login.email, this.login.password);
+
+      this.toastCtrl.create({
+        message: 'ログイン成功',
+        duration: 3000
+      }).present();
+
+      this.navCtrl.setRoot(HomePage);
+    } catch (error) {
+      this.toastCtrl.create({
+        message: error,
+        duration: 5000
+      }).present();
+    }
   }
 }
