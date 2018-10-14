@@ -1,18 +1,37 @@
-<!--
-  Generated template for the SignupPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>signup</ion-title>
+    <ion-title>Signup</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
+  <ion-item padding-top text-center no-lines>
+    <h1>メッセージボード</h1>
+    <p>まずはアカウントを登録しましょう！</p>
+  </ion-item>
 
+  <form #f="ngForm">
+    <ion-grid class="formGrid">
+      <ion-row class="inputRow">
+        <ion-icon padding-top padding-left name="mail"></ion-icon>
+        <ion-input required email [(ngModel)]="signup.email" type="email" name="signup.email" placeholder="メールアドレス"></ion-input>
+      </ion-row>
+
+      <ion-row class="inputRow">
+        <ion-icon padding-top padding-left name="key"></ion-icon>
+        <ion-input required [(ngModel)]="signup.password" type="password" name="signup.password" placeholder="パスワード"></ion-input>
+      </ion-row>
+
+      <ion-row class="inputRow">
+        <ion-icon padding-top padding-left name="person"></ion-icon>
+        <ion-input required [(ngModel)]="signup.name" type="text" name="signup.name" placeholder="名前"></ion-input>
+      </ion-row>
+
+      <ion-row class="inputRow">
+        <button [disabled]="!f.form.valid" (click)="signUp()" type="button" ion-button block round>アカウント登録</button>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+  <button ion-button block clear (click)="goBack()">既にアカウントをお持ちの方はこちら</button>
 </ion-content>
