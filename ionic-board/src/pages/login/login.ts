@@ -3,6 +3,7 @@ import { NavController, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 import { HomePage } from '../home/home';
+import { SignupPage } from '../signup/signup';
 
 @Component({
   selector: 'page-login',
@@ -39,5 +40,9 @@ export class LoginPage {
         duration: 5000
       }).present();
     }
+  }
+
+  gotoSignup() {
+    this.navCtrl.push(SignupPage);
   }
 }
