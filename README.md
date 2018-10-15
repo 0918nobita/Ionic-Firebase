@@ -18,3 +18,10 @@ export const firebaseConfig = {
 ```
 
 Firebase Console から入手したそれぞれの文字列を、伏せている部分に当てはめてください。
+
+### ionic-board の開発用サーバーの起動
+
+```bash
+$ cd ionic-board
+$ npx ionic serve
+```
