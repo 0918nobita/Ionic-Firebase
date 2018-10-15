@@ -25,7 +25,7 @@ export class LoginPage {
 
   async userLogin() {
     try {
-      const user = await this.afAuth.auth.signInWithEmailAndPassword(
+      await this.afAuth.auth.signInWithEmailAndPassword(
           this.login.email, this.login.password);
 
       this.toastCtrl.create({
