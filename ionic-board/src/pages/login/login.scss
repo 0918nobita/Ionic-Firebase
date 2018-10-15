@@ -2,9 +2,9 @@ page-login {
   .formGrid {
     width: 80%;
 
-    .iuputRow {
+    .inputRow {
       border: 1px solid map-get($colors, primary);
-      border-bottom: 20px;
+      margin-bottom: 20px;
       border-radius: 20px;
     }
 
