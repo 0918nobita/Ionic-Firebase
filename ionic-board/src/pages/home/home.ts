@@ -6,6 +6,7 @@ import * as firebase from 'firebase';
 import moment from 'moment';
 
 import { Post } from '../../app/models/post';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -28,6 +29,7 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
+    this.afStore.firestore.enableNetwork();
     this.getPosts();
   }
 
@@ -101,5 +103,22 @@ export class HomePage {
 
   differenceTime(time: Date) {
     return moment(time).fromNow();
+  }
+
+  async logout() {
+    try {
+      this.afStore.firestore.disableNetwork();
+      await this.afAuth.auth.signOut();
+      this.toastCtrl.create({
+        message: 'ログアウトしました',
+        duration: 3000
+      }).present();
+      this.navCtrl.setRoot(LoginPage);
+    } catch (error) {
+      this.toastCtrl.create({
+        message: error,
+        duration: 5000
+      }).present();
+    }
   }
 }
