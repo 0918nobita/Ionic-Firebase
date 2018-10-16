@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, ToastController } from 'ionic-angular';
+import { AngularFirestore, AngularFireCollection } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import * as firebase from 'firebase';
+
+import { Post } from '../../app/models/post';
 
 @Component({
   selector: 'page-home',
@@ -14,9 +19,14 @@ export class HomePage {
         { userName: 'ポプ子', message: 'えいえい、おこった？', createdDate: '10分前' },
         { userName: 'ピピ美', message: 'おこってないよ', createdDate: '5分前' }
       ];
+  constructor(
+      public navCtrl: NavController,
+      private alertCtrl: AlertController,
+      private toastCtrl: ToastController,
+      private afStore: AngularFirestore,
+      private afAuth: AngularFireAuth
+  ) {}
 
-  constructor(public navCtrl: NavController,
-              public alertCtrl: AlertController) {}
 
   addPost() {
     this.posts.push({
