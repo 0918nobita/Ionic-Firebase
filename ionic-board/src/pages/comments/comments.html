@@ -1,18 +1,37 @@
-<!--
-  Generated template for the CommentsPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>comments</ion-title>
+    <ion-title>Comment Page</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
+  <form #f="ngForm" name="form">
+      <ion-list class="inputBlock">
+        <ion-item padding class="textBlock">
+          <ion-label floating>コメント</ion-label>
+          <ion-input [(ngModel)]="message" required type="text" name="message"></ion-input>
+        </ion-item>
+        <button (click)="addComment()" type="submit" [disabled]="!f.form.valid" block class="submit" ion-button>投稿</button>
+      </ion-list>
+  </form>
 
+  <ion-card class="singlePost">
+    <ion-item>
+      <h2>{{sourcePost.userName}}</h2>
+    </ion-item>
+    <ion-card-content>
+      <p margin-vertical>{{sourcePost.message}}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <ion-list-header>
+      この投稿へのコメント
+    </ion-list-header>
+
+    <ion-item *ngFor="let c of comments">
+      <h3 margin-bottom>{{c.userName}}</h3>
+      <p>{{c.message}}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>
