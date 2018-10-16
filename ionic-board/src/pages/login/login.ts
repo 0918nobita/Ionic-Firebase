@@ -25,11 +25,11 @@ export class LoginPage {
 
   async userLogin() {
     try {
-      await this.afAuth.auth.signInWithEmailAndPassword(
-          this.login.email, this.login.password);
+      const user = (await this.afAuth.auth.signInWithEmailAndPassword(
+          this.login.email, this.login.password)).user;
 
       this.toastCtrl.create({
-        message: 'ログイン成功',
+        message: `${user.displayName} さん、お帰りなさい`,
         duration: 3000
       }).present();
 
