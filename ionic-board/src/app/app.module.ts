@@ -11,7 +11,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
-import { CommentPage } from '../../comments/comments';
+import { CommentsPage } from '../pages/comments/comments';
 import { environment } from '../environments/environment';
 
 @NgModule({
