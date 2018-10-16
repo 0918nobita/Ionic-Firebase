@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, ToastController } from 'ionic-angular';
+import { NavController, AlertController, ToastController, AlertButton } from 'ionic-angular';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase';
@@ -55,7 +55,7 @@ export class HomePage {
     const alert = this.alertCtrl.create({
       title: 'メッセージ編集',
       inputs: [ { name: 'message', placeholder: 'メッセージ', value: post.message } ],
-      buttons: [
+      buttons: <AlertButton[]> [
         {
           text: 'キャンセル',
           role: 'cancel',
