@@ -23,7 +23,9 @@ export class HomePage {
       private toastCtrl: ToastController,
       private afStore: AngularFirestore,
       private afAuth: AngularFireAuth
-  ) {}
+  ) {
+    moment.locale('ja');
+  }
 
   ionViewWillEnter() {
     this.getPosts();
@@ -95,5 +97,9 @@ export class HomePage {
         duration: 5000
       }).present();
     }
+  }
+
+  differenceTime(time: Date) {
+    return moment(time).fromNow();
   }
 }

@@ -47,7 +47,7 @@
           </ion-col>
 
           <ion-col class="postedTime">
-            <ion-note>{{ (p.created === null) ? '読み込み中' : p.created.toDate() }}</ion-note>
+            <ion-note>{{ (p.created === null) ? '読み込み中' : differenceTime(p.created.toDate()) }}</ion-note>
           </ion-col>
         </ion-row>
       </ion-card-content>
