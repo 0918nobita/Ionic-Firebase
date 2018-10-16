@@ -11,6 +11,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
+import { CommentPage } from '../../comments/comments';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -18,7 +19,8 @@ import { environment } from '../environments/environment';
     MyApp,
     HomePage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    CommentsPage
   ],
   imports: [
     BrowserModule,
@@ -32,12 +34,13 @@ import { environment } from '../environments/environment';
     MyApp,
     HomePage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    CommentsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
 export class AppModule {}
