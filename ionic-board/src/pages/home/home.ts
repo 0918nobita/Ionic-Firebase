@@ -3,6 +3,7 @@ import { NavController, AlertController, ToastController, AlertButton } from 'io
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase';
+import moment from 'moment';
 
 import { Post } from '../../app/models/post';
 
