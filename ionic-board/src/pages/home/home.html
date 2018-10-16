@@ -17,7 +17,7 @@
     </ion-list>
 
     <!-- index は *ngFor の特殊変数 -->
-    <ion-card class="singlePost" *ngFor="let p of posts; let i = index">
+    <ion-card class="singlePost" *ngFor="let p of posts">
       <ion-item>
         <h2 padding-vertical>{{p.userName}}</h2>
       </ion-item>
@@ -33,7 +33,7 @@
           </ion-col>
 
           <ion-col>
-            <button (click)="presentPrompt(i, p)" ion-button icon-start clear small>
+            <button (click)="presentPrompt(p)" ion-button icon-start clear small>
               <ion-icon name="create"></ion-icon>
               <div>編集</div>
             </button>

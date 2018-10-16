@@ -51,11 +51,10 @@ export class HomePage {
     this.postsCollection.valueChanges().subscribe(data => { this.posts = data; });
   }
 
-  presentPrompt(index: number, post: Post) {
-    console.log('Index: ' + index);
+  presentPrompt(post: Post) {
     const alert = this.alertCtrl.create({
       title: 'メッセージ編集',
-      inputs: [ { name: 'message', placeholder: 'メッセージ', value: this.posts[index].message } ],
+      inputs: [ { name: 'message', placeholder: 'メッセージ', value: post.message } ],
       buttons: [
         {
           text: 'キャンセル',
