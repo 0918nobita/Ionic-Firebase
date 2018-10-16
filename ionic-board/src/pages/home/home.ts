@@ -7,6 +7,7 @@ import moment from 'moment';
 
 import { Post } from '../../app/models/post';
 import { LoginPage } from '../login/login';
+import { CommentsPage } from '../comments/comments';
 
 @Component({
   selector: 'page-home',
@@ -120,5 +121,9 @@ export class HomePage {
         duration: 5000
       }).present();
     }
+  }
+
+  showComment(post: Post) {
+    this.navCtrl.push(CommentsPage, { post });
   }
 }
