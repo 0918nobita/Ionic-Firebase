@@ -33,21 +33,21 @@
           </ion-col>
 
           <ion-col>
-            <button (click)="presentPrompt(i)" ion-button icon-start clear small>
+            <button (click)="presentPrompt(i, p)" ion-button icon-start clear small>
               <ion-icon name="create"></ion-icon>
               <div>編集</div>
             </button>
           </ion-col>
 
           <ion-col>
-            <button (click)="delete(i)" ion-button icon-start clear small>
+            <button (click)="delete(p)" ion-button icon-start clear small>
               <ion-icon name="trash"></ion-icon>
               <div>削除</div>
             </button>
           </ion-col>
 
           <ion-col class="postedTime">
-            <ion-note>{{p.createdDate}}</ion-note>
+            <ion-note>{{ (p.created === null) ? '読み込み中' : p.created.toDate() }}</ion-note>
           </ion-col>
         </ion-row>
       </ion-card-content>

@@ -13,12 +13,9 @@ import { Post } from '../../app/models/post';
 export class HomePage {
 
   message: string;
+  posts: Post[];
+  postsCollection: AngularFirestoreCollection<Post>;
 
-  posts: { userName: string, message: string, createdDate: any }[] =
-      [
-        { userName: 'ポプ子', message: 'えいえい、おこった？', createdDate: '10分前' },
-        { userName: 'ピピ美', message: 'おこってないよ', createdDate: '5分前' }
-      ];
   constructor(
       public navCtrl: NavController,
       private alertCtrl: AlertController,
@@ -27,17 +24,34 @@ export class HomePage {
       private afAuth: AngularFireAuth
   ) {}
 
-
-  addPost() {
-    this.posts.push({
-      userName: 'Kodai Matsumoto',
-      message: this.message,
-      createdDate: '数秒前'
-    });
-    this.message = '';
+  ionViewWillEnter() {
+    this.getPosts();
   }
 
-  presentPrompt(index: number) {
+  async addPost() {
+    try {
+      const docRef = await this.afStore.collection('posts').add({
+        id: '',
+        userName: this.afAuth.auth.currentUser.displayName,
+        message: this.message,
+        created: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      this.postsCollection.doc(docRef.id).update({ id: docRef.id });
+      this.message = '';
+    } catch (error) {
+      this.toastCtrl.create({
+        message: error,
+        duration: 5000
+      }).present();
+    }
+  }
+
+  getPosts() {
+    this.postsCollection = this.afStore.collection('posts', ref => ref.orderBy('created', 'desc'));
+    this.postsCollection.valueChanges().subscribe(data => { this.posts = data; });
+  }
+
+  presentPrompt(index: number, post: Post) {
     console.log('Index: ' + index);
     const alert = this.alertCtrl.create({
       title: 'メッセージ編集',
@@ -50,17 +64,36 @@ export class HomePage {
         },
         {
           text: '更新',
-          handler: data => {
-            console.log(data);
-            this.posts[index].message = data.message;
-          }
+          handler: data => this.updatePost(post, data.message)
         }
       ]
     });
     alert.present();
   }
 
-  delete(index: number) {
-    this.posts.splice(index, 1);
+  async updatePost(post: Post, message: string) {
+    try {
+      await this.postsCollection.doc(post.id).update({ message });
+      this.toastCtrl.create({
+        message: '投稿が更新されました',
+        duration: 3000
+      }).present();
+    } catch (error) {
+      this.toastCtrl.create({
+        message: error,
+        duration: 5000
+      }).present();
+    }
+  }
+
+  async delete(post: Post) {
+    try {
+      await this.postsCollection.doc(post.id).delete();
+    } catch (error) {
+      this.toastCtrl.create({
+        message: error,
+        duration: 5000
+      }).present();
+    }
   }
 }
